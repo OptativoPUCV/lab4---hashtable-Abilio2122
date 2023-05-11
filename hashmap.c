@@ -127,18 +127,17 @@ Pair * firstMap(HashMap * map){
     return NULL;
 };
 
-Pair * nextMap(HashMap * map) {
- if (map == NULL || map->size == 0) {
-        return NULL; //si el mapa es nulo o está vacío, no hay un siguiente par
-    }
-  //buscar el siguiente bucket que tenga un Pair
-  while (map->current < map->capacity && map->buckets[map->current] == NULL) {
-      map->current++;
-    }
-  //si se llega al final de la tabla, no hay un siguiente par
-  if (map->current >= map->capacity) {
-    return NULL;
+Pair * nextMap(HashMap * map){
+  if (map->current == -1) {
+        return NULL;
   }
+  for (long i = map->current+1; i < map->capacity; i++) {
+    if (*(map->buckets+i) != NULL && (*(map->buckets+i))->key != NULL) {
+      map->current = i;
+      return *(map->buckets+i);
+    }
+  }
+  map->current = -1;
   //devolver el siguiente Pair
   Pair * pair = map->buckets[map->current];
   map->current++;
