@@ -131,15 +131,19 @@ Pair * firstMap(HashMap * map) {
 }
 
 Pair * nextMap(HashMap * map) {
- // Si la posición actual es -1, no hay siguiente elemento
-  if (map->current == -1) {
-      return NULL;
+ if (map == NULL || map->size == 0) {
+        return NULL; //si el mapa es nulo o está vacío, no hay un siguiente par
+    }
+  //buscar el siguiente bucket que tenga un Pair
+  while (map->current < map->capacity && map->buckets[map->current] == NULL) {
+      map->current++;
+    }
+  //si se llega al final de la tabla, no hay un siguiente par
+  if (map->current >= map->capacity) {
+    return NULL;
   }
-  
-  for(int pos=map->current+1;pos<map->capacity;)
-  
-  // Si llegó al final del arreglo sin encontrar un par válido, establece la posición actual en -1 y devuelve NULL
-  map->current = -1;
-
-  return NULL;
+  //devolver el siguiente Pair
+  Pair * pair = map->buckets[map->current];
+  map->current++;
+  return pair;
 }
