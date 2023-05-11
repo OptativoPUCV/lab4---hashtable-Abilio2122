@@ -117,8 +117,18 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-
-    return NULL;
+  int i=0;
+  // recorro todo el arreglo hasta lelgar al fin
+  while(i<map->capacity){
+    if(map->buckets[i]!=NULL){
+      map->current=i;
+      return map->buckets[i];
+    }
+    i++;
+  }
+// si se salio de el while sin retornar quiere decir que esta vacio
+  printf("el arreglo esta vacio");
+  return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
