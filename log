@@ -160,3 +160,9 @@ hashmap.c:125:29: error: returning ‘char *’ from a function with incompatibl
 cc1: all warnings being treated as errors
 Compilation failed
 1cc750e
+Thu 11 May 2023 08:46:27 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  11|2
+total_score: 50/70
+8e0b15e
