@@ -83,19 +83,33 @@ HashMap * createMap(long capacity) {
 }
 
 void eraseMap(HashMap * map,  char * key) {    
-
-
+  int pos=hash(key,map->capacity);
+  int inicio = pos;
+  
+  while(map->buckets[pos]!=NULL){
+    if(strcmp(map->buckets[pos]->key,key)==0){
+      map->buckets[pos]->key=NULL;
+      map->size--;
+      return;
+    }
+    pos = ((pos + 1) % map -> capacity);
+    if(pos==inicio){
+    printf("no se encontro casilla a eliminar");
+    break;
+    }
+  }
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
   int pos=hash(key,map->capacity);
 
-  //en este while  recorre todo el arreglo desde la posicion del hash
+  //en este while  recorre todo el arreglo desde la posicion del hash hasta un NULL
   while(map->buckets[pos]!=NULL){
     if(map->buckets[pos] != NULL && strcmp(map->buckets[pos]->key, key) == 0){
       map->current=pos;
       return map->buckets[pos];
     }
+    //si no lo encuentra va para la proxima posicion como arreglo de colision
     pos = (pos + 1) % map->capacity;
   }
   //en el caso de que dentro de que salga del while quiere decir que no esta en el arreglo
