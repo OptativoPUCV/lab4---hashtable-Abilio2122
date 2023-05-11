@@ -66,6 +66,28 @@ void insertMap(HashMap * map, char * key, void * value) {
 }
 
 void enlarge(HashMap * map) {
+    // incrementar la capacidad del mapa
+    long new_capacity = map->capacity * 2;
+    
+    // crear un nuevo arreglo de buckets con la nueva capacidad
+    Pair ** new_buckets = (Pair **) calloc(new_capacity, sizeof(Pair *));
+    
+    // recorrer el arreglo anterior y reasignar cada Pair en su nuevo bucket
+    for (long i = 0; i < map->capacity; i++) {
+      Pair * pair = *(map->buckets + i);
+      if (pair != NULL) {
+        long index = hash((char *)pair->key, new_capacity);
+        while (*(new_buckets + index) != NULL) {
+          index = (index + 1) % new_capacity;
+        }
+        *(new_buckets + index) = pair;
+      }
+    }
+    
+    // liberar la memoria del arreglo anterior y asignar el nuevo arreglo al mapa
+    free(map->buckets);
+    map->buckets = new_buckets;
+    map->capacity = new_capacity;
     enlarge_called = 1; //no borrar (testing purposes)
 
 
@@ -143,7 +165,7 @@ Pair * nextMap(HashMap * map) {
     return NULL;
   }
   //devolver el siguiente Pair
-  Pair * pair = map->buckets[map->current-1];
+  Pair * pair = map->buckets[map->current];
   map->current++;
   return pair;
 }
