@@ -90,7 +90,8 @@ void eraseMap(HashMap * map,  char * key) {
 Pair * searchMap(HashMap * map,  char * key) {   
   int pos=hash(key,map->capacity);
 
-  while(pos<(map->capacity)&&pos>0){
+  //en este while  recorre todo el arreglo desde la posicion del hash
+  while(map->buckets[pos]!=NULL){
     if(map->buckets[pos] != NULL && strcmp(map->buckets[pos]->key, key) == 0){
       map->current=pos;
       return map->buckets[pos];
