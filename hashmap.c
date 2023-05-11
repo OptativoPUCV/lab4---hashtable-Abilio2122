@@ -41,7 +41,7 @@ int is_equal(void* key1, void* key2){
 
 void insertMap(HashMap * map, char * key, void * value) {
   int pos= hash(key,map->capacity);
-
+  // en el caso de que este vacia la pos
   if(map->buckets[pos]==NULL){ 
     Pair *p = createPair(key, value);
     map->buckets[pos] = p;
@@ -49,6 +49,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     map->current=pos;
     return;
   }
+  //en el caso que este ocupada
   int next_pos = (pos + 1) % map->capacity;
     while (next_pos != pos) {
         if (map->buckets[next_pos] == NULL) {
@@ -60,6 +61,7 @@ void insertMap(HashMap * map, char * key, void * value) {
         }
         next_pos = (next_pos + 1) % map->capacity;
     }
+  //si no hay espacio disponible en el mapa no se insertará
   printf("Error: la tabla de hash está llena.\n");
 }
 
@@ -86,9 +88,16 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
+  int pos=hash(key,map->capacity);
 
-
-    return NULL;
+  while(pos<(map->capacity)){
+    if(strcmp(map->buckets[pos]->key, key) == 0){
+      return map->buckets[pos];
+    }
+    pos = (pos + 1) % map->capacity;
+  }
+  //en el caso de que dentro de que salga del while quiere decir que no esta en el arreglo
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
