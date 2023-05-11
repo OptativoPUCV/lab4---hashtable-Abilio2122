@@ -139,7 +139,7 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-  if (map->size == 0) {
+  if (map->size == 0||map->buckets!=NULL) {
     return NULL;
   }
   
