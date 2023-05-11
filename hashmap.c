@@ -125,7 +125,7 @@ Pair * firstMap(HashMap * map){
     }
   }
     return NULL;
-};
+}
 
 Pair * nextMap(HashMap * map) {
  if (map == NULL || map->size == 0) {
