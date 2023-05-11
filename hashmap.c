@@ -46,11 +46,21 @@ void insertMap(HashMap * map, char * key, void * value) {
     Pair *p = createPair(key, value);
     map->buckets[pos] = p;
     map->size++;
+    map->current=pos;
+    return;
   }
-  else{
-    map -> buckets[pos] -> value = value;
-  }
-  map->current=pos;
+  int next_pos = (pos + 1) % map->capacity;
+    while (next_pos != pos) {
+        if (map->buckets[next_pos] == NULL) {
+            Pair *p = createPair(key, value);
+            map->buckets[next_pos] = p;
+            map->size++;
+            map->current = next_pos;
+            return;
+        }
+        next_pos = (next_pos + 1) % map->capacity;
+    }
+  printf("Error: la tabla de hash está llena.\n");
 }
 
 void enlarge(HashMap * map) {
