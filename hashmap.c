@@ -139,6 +139,10 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
+  if (map->size == 0) {
+    return NULL;
+  }
+  
   int i=0;
   // recorro todo el arreglo hasta llegar al fin
   while(i<map->capacity){
