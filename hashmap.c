@@ -116,28 +116,32 @@ Pair * searchMap(HashMap * map,  char * key) {
   return NULL;
 }
 
-Pair * firstMap(HashMap * map){
-  int i;
-  for(i=0; i<map->capacity; i++){
-    if(map -> buckets[i] != NULL){
-      map -> current = i;
-      return map -> buckets[i];
+Pair * firstMap(HashMap * map) {
+  int i=0;
+  // recorro todo el arreglo hasta llegar al fin
+  while(i<map->capacity){
+    if(map->buckets[i]!=NULL){
+      map->current=i;
+      return map->buckets[i];
     }
+    i++;
   }
-    return NULL;
-};
+// si se salio de el while sin retornar quiere decir que esta vacio
+  return NULL;
+}
 
-Pair * nextMap(HashMap * map){
-  if (map->current == -1) {
-        return NULL;
-  }
-  for (long i = map->current+1; i < map->capacity; i++) {
-    if (*(map->buckets+i) != NULL && (*(map->buckets+i))->key != NULL) {
-      map->current = i;
-      return *(map->buckets+i);
+Pair * nextMap(HashMap * map) {
+ if (map == NULL || map->size == 0) {
+        return NULL; //si el mapa es nulo o está vacío, no hay un siguiente par
     }
+  //buscar el siguiente bucket que tenga un Pair
+  while (map->current < map->capacity && map->buckets[map->current] == NULL) {
+      map->current++;
+    }
+  //si se llega al final de la tabla, no hay un siguiente par
+  if (map->current >= map->capacity) {
+    return NULL;
   }
-  map->current = -1;
   //devolver el siguiente Pair
   Pair * pair = map->buckets[map->current];
   map->current++;
