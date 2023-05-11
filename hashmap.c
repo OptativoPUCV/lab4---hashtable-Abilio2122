@@ -139,7 +139,7 @@ Pair * nextMap(HashMap * map) {
       map->current++;
     }
   //si se llega al final de la tabla, no hay un siguiente par
-  if (map->current >= map->capacity) {
+  if (map->current == map->capacity) {
     return NULL;
   }
   //devolver el siguiente Pair
