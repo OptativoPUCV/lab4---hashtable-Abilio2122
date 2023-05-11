@@ -116,15 +116,18 @@ Pair * searchMap(HashMap * map,  char * key) {
   return NULL;
 }
 
-Pair * firstMap(HashMap * map){
-  int i;
-  for(i=0; i<map->capacity; i++){
-    if(map -> buckets[i] != NULL){
-      map -> current = i;
-      return map -> buckets[i];
+Pair * firstMap(HashMap * map) {
+  int i=0;
+  // recorro todo el arreglo hasta llegar al fin
+  while(i<map->capacity){
+    if(map->buckets[i]!=NULL){
+      map->current=i;
+      return map->buckets[i]->value;
     }
+    i++;
   }
-    return NULL;
+// si se salio de el while sin retornar quiere decir que esta vacio
+  return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
