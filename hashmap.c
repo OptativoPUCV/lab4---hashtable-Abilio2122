@@ -46,15 +46,9 @@ void insertMap(HashMap * map, char * key, void * value) {
     pos=(pos+1)%map->capacity;
   }
 
-  if(map->buckets[pos]==NULL){
-    Pair *p = createPair(key, value);
-    map->buckets[pos] = p;
-    map->size++;
-  }
-  else{
-    map->buckets[pos]->key=key;
-    map->buckets[pos]->value=value;
-  }
+  Pair *p = createPair(key, value);
+  map->buckets[pos] = p;
+  map->size++;
 
   map->current=pos;
 }
