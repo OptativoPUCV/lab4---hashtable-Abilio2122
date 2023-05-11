@@ -127,7 +127,6 @@ Pair * firstMap(HashMap * map) {
     i++;
   }
 // si se salio de el while sin retornar quiere decir que esta vacio
-  printf("el arreglo esta vacio");
   return NULL;
 }
 
