@@ -173,6 +173,5 @@ Pair * nextMap(HashMap * map) {
   printf("3");
   //devolver el siguiente Pair
   Pair * pair = map->buckets[map->current];
-  map->current++;
   return pair;
 }
