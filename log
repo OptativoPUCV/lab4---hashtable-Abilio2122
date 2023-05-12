@@ -270,3 +270,9 @@ Fri 12 May 2023 07:14:09 PM UTC:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 9af5684
+Fri 12 May 2023 07:15:32 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  14|1
+total_score: 60/70
+cace162
