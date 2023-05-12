@@ -161,7 +161,7 @@ Pair * nextMap(HashMap * map) {
         return NULL; //si el mapa es nulo o está vacío, no hay un siguiente par
     }
   //buscar el siguiente bucket que tenga un Pair
-  while (map->current < map->capacity && map->buckets[map->current] == NULL&& map->buckets[map->current]->key == NULL) {
+  while (map->current < map->capacity && map->buckets[map->current] == NULL&& map->buckets[map->current]->key != NULL) {
       map->current++;
     }
   //si se llega al final de la tabla, no hay un siguiente par
