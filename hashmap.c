@@ -162,7 +162,7 @@ Pair * nextMap(HashMap * map) {
   }
   printf("1");
   //buscar el siguiente bucket que tenga un Pair
-  while ((map->buckets[map->current] == NULL|| map->buckets[map->current]->key == NULL)) {
+  while (map->current < map->capacity && (map->buckets[map->current] == NULL|| map->buckets[map->current]->key == NULL)) {
       map->current++;
     printf("|");
   }
